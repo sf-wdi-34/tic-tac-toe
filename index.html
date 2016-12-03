@@ -19,10 +19,10 @@
       <header>
         <h1>Tic Tac Toe Game</h1>
       </header>
-      <div class="game-container">
-      <div class="game-container col-xs-12">
 
-        <div class="row">
+      <div class="gameboard col-sm-9 col-xs-12">
+
+        <div>
           <div class="column col-xs-4" id="one">
             col 1
           </div>
@@ -33,7 +33,7 @@
             col 3
           </div>
         </div>
-        <div class="row">
+        <div>
           <div class="column col-xs-4" id="four">
             col 1
           </div>
@@ -44,7 +44,7 @@
             col 3
           </div>
         </div>
-        <div class="row">
+        <div>
           <div class="column col-xs-4" id="seven">
             col 1
           </div>
@@ -54,15 +54,23 @@
           <div class="column col-xs-4" id="nine">
             col 3
           </div>
+        </div> <!--closing div for last row-->
 
-        </div> <!--closing div for gameboard-->
+      </div> <!--closing div for gameboard-->
 
-      </div> <!--closing div for game-container-->
-
+      <aside id="message col-sm-3 col-sm-offset-8 col-xs-12">
+        <h3>Player One, choose your symbol:</h3>
+        <button type="button" class="btn btn-secondary">X</button>
+        <button type="button" class="btn btn-secondary">O</button>
+      </aside>
     </div> <!--closing div for whole container-->
-
   </body>
 </html>
+
+
+
+
+
         <!-- <div class="col-md-12">
           <h1>Tic Tac Toe</h1>
           <hr>
