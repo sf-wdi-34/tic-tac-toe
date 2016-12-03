@@ -1,6 +1,10 @@
-/** {
-  border: 1px dotted black;
-}*/
+.x-image {
+  background: url('../imgs/x-image');
+}
+
+.o-image {
+  background: url('../imgs/o-image');
+}
 
 .column {
   height: 100px;
