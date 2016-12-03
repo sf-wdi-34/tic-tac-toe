@@ -1,35 +1,51 @@
-console.log('yay');
-
 //wait for the DOM to finish loading
 $(document).ready(function() {
 
   //assign symbols to players
-  $('#x').on('click', function() {
-    var playerOne = 'x';
-    var playerTwo = 'o';
+  $('#x').on('click', function () {
+    playerOne = 'x';
+    playerTwo = 'o';
+    firstPlayer();
   });
+
   $('#o').on('click', function () {
-    var playerOne = 'o';
-    var playerTwo = 'x';
+    playerOne = 'o';
+    playerTwo = 'x';
+    firstPlayer();
   });
 
   //determine who goes first
-  if (playerOne) {
-    var turn = randomlychoose(playerOne or playerTwo);
-    if (turn === playerOne) {
-      $('#message').text('<h3>You go first Player One!</h3>');
+  function firstPlayer() {
+    var random = Math.random();
+    if (random > .5) {
+      turn = playerOne;
     } else {
-      $('#message').text('<h3>You go first Player Two!</h3>');
+      turn = playerTwo;
+    };
+    if (turn === playerOne) {
+      $('#message').text('You go first Player One!');
+    } else {
+      $('#message').text('You go first Player Two!');
     }
-  });
+  }
 
   //event listener for player to click
   var allBoxes = $('.column');
-  allBoxes.on('click', addSymbol);
+  allBoxes.eq(0).on('click', addSymbol);
+  allBoxes.eq(1).on('click', addSymbol);
+  allBoxes.eq(2).on('click', addSymbol);
+  allBoxes.eq(3).on('click', addSymbol);
+  allBoxes.eq(4).on('click', addSymbol);
+  allBoxes.eq(5).on('click', addSymbol);
+  allBoxes.eq(6).on('click', addSymbol);
+  allBoxes.eq(7).on('click', addSymbol);
+  allBoxes.eq(8).on('click', addSymbol);
 
 });
 
-// assign symbol to X and symbol to O
+var playerOne;
+var playerTwo;
+var turn;
 
 //keep track of who's turn it is
 function changeTurn(currentPlayer) {
@@ -52,24 +68,24 @@ function addSymbol() {
 function playerOneSymbol() {
   //if box is empty then:
     if (playerOne === 'x') {
-      allBoxes.eq().addClass("x-image");
+      $(this).addClass("x-image");
     } else {
-      allBoxes.eq().addClass("o-image");
+      $(this).addClass("o-image");
     }
     changeTurn(playerOne);
-    $('#message').text('<h3>Your turn Player Two!</h3>');
+    $('#message').html('<h3>Your turn Player Two!</h3>');
   //else message you can't do that
 }
 
 function playerTwoSymbol() {
   //if box is empty then:
     if (playerTwo === 'x') {
-      allBoxes.eq().addClass("x-image");
+      $(this).addClass("x-image");
     } else {
-      allBoxes.eq().addClass("o-image");
+      $(this).addClass("o-image");
     }
     changeTurn(playerTwo);
-    $('#message').text('<h3>Your turn Player One!</h3>');
+    $('#message').html('<h3>Your turn Player One!</h3>');
   //else message you can't do that
 }
 
