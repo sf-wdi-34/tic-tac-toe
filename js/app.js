@@ -3,14 +3,14 @@ $(document).ready(function() {
 
   //assign symbols to players
   $('#x').on('click', function () {
-    playerOne = 'x';
-    playerTwo = 'o';
+    playerOne = 'X';
+    playerTwo = 'O';
     firstPlayer();
   });
 
   $('#o').on('click', function () {
-    playerOne = 'o';
-    playerTwo = 'x';
+    playerOne = 'O';
+    playerTwo = 'X';
     firstPlayer();
   });
 
@@ -23,9 +23,9 @@ $(document).ready(function() {
       turn = playerTwo;
     };
     if (turn === playerOne) {
-      $('#message').text('You go first Player One!');
+      $('#message').html('<h3>Player One: ' + playerOne + '<br/> Player Two: ' + playerTwo + '<br/><br/> You go first Player One!</h3>');
     } else {
-      $('#message').text('You go first Player Two!');
+      $('#message').html('<h3>Player One: ' + playerOne + '<br/> Player Two: ' + playerTwo + '<br/><br/> You go first Player Two!</h3>');
     }
   }
 
@@ -40,12 +40,35 @@ $(document).ready(function() {
   allBoxes.eq(6).on('click', addSymbol);
   allBoxes.eq(7).on('click', addSymbol);
   allBoxes.eq(8).on('click', addSymbol);
-
 });
 
 var playerOne;
 var playerTwo;
 var turn;
+var count = 0;
+
+//add symbol to box that player clicked
+function addSymbol() {
+  if (turn === playerOne) {
+    if (playerOne === 'X') {
+      $(this).addClass('x-image');
+    } else {
+      $(this).addClass('o-image');
+    }
+    changeTurn(playerOne);
+    $('#message').html('<h3>Your turn Player Two!</h3>');
+  } else {
+    if (playerTwo === 'X') {
+      $(this).addClass('x-image');
+    } else {
+      $(this).addClass('o-image');
+    }
+    changeTurn(playerTwo);
+    $('#message').html('<h3>Your turn Player One!</h3>');
+  }
+  count ++;
+  //countCheck();
+}
 
 //keep track of who's turn it is
 function changeTurn(currentPlayer) {
@@ -56,39 +79,37 @@ function changeTurn(currentPlayer) {
   }
 }
 
-//add symbol to box that player clicked
-function addSymbol() {
-  if (turn === playerOne) {
-    playerOneSymbol();
-  } else {
-    playerTwoSymbol();
+function countCheck() {
+  if (allBoxes.eq(0)&&allBoxes.eq(1)&&allBoxes.eq(2) === 'X' ||
+  allBoxes.eq(3)&&allBoxes.eq(4)&&allBoxes.eq(5) === 'X' ||
+  allBoxes.eq(6)&&allBoxes.eq(7)&&allBoxes.eq(8) === 'X' ||
+  allBoxes.eq(0)&&allBoxes.eq(3)&&allBoxes.eq(6) === 'X' ||
+  allBoxes.eq(1)&&allBoxes.eq(4)&&allBoxes.eq(7) === 'X' ||
+  allBoxes.eq(3)&&allBoxes.eq(5)&&allBoxes.eq(8) === 'X' ||
+  allBoxes.eq(0)&&allBoxes.eq(4)&&allBoxes.eq(8) === 'X' ||
+  allBoxes.eq(2)&&allBoxes.eq(4)&&allBoxes.eq(6) === 'X') {
+    if (playerOne === 'X') {
+      $('#message').html('<h3>Player One is victorious!</h3>');
+    } else {
+      $('#message').html('<h3>Player Two is victorious!</h3>');
+    }
+  } else if (allBoxes.eq(0)&&allBoxes.eq(1)&&allBoxes.eq(2) === 'O' ||
+  allBoxes.eq(3)&&allBoxes.eq(4)&&allBoxes.eq(5) === 'O' ||
+  allBoxes.eq(6)&&allBoxes.eq(7)&&allBoxes.eq(8) === 'O' ||
+  allBoxes.eq(0)&&allBoxes.eq(3)&&allBoxes.eq(6) === 'O' ||
+  allBoxes.eq(1)&&allBoxes.eq(4)&&allBoxes.eq(7) === 'O' ||
+  allBoxes.eq(3)&&allBoxes.eq(5)&&allBoxes.eq(8) === 'O' ||
+  allBoxes.eq(0)&&allBoxes.eq(4)&&allBoxes.eq(8) === 'O' ||
+  allBoxes.eq(2)&&allBoxes.eq(4)&&allBoxes.eq(6) === 'O') {
+    if (playerOne === 'O') {
+      $('#message').html('<h3>Player One is victorious!</h3>');
+    } else {
+      $('#message').html('<h3>Player Two is victorious!</h3>');
+    }
+  } else if (count === 9) {
+    $('#message').html('<h3>Womp womp game over</h3>');
   }
 }
 
-function playerOneSymbol() {
-  //if box is empty then:
-    if (playerOne === 'x') {
-      $(this).addClass("x-image");
-    } else {
-      $(this).addClass("o-image");
-    }
-    changeTurn(playerOne);
-    $('#message').html('<h3>Your turn Player Two!</h3>');
-  //else message you can't do that
-}
-
-function playerTwoSymbol() {
-  //if box is empty then:
-    if (playerTwo === 'x') {
-      $(this).addClass("x-image");
-    } else {
-      $(this).addClass("o-image");
-    }
-    changeTurn(playerTwo);
-    $('#message').html('<h3>Your turn Player One!</h3>');
-  //else message you can't do that
-}
-
-//function to know when someone has won
-
 //form to input names, so it addresses Amber instead of player 1
+//temporarily hide buttons
