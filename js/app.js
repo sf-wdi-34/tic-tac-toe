@@ -53,7 +53,7 @@ $(document).ready(function() {
     allBoxes.removeClass('o-image');
     $('aside').html('<h3 id="message">Player One, choose your symbol:</h3>' +
             '<button type="button" class="btn btn-secondary" id="x">X</button>' +
-            '<button type="button" class="btn btn-secondary" id="o">O</button>');
+            '&nbsp<button type="button" class="btn btn-secondary" id="o">O</button>');
   })
 });
 
@@ -66,33 +66,37 @@ var whichBox;
 
 //add symbol to box that player clicked
 function addSymbol() {
-  if (turn === playerOne) {
-    if (playerOne === 'X') {
-      $(this).addClass('x-image');
-      whichBox = $(this).attr('id');
-      trackBox('X');
-    } else {
-      $(this).addClass('o-image');
-      whichBox = $(this).attr('id');
-      trackBox('O');
-    }
-    changeTurn(playerOne);
-    $('span').text('Your turn Player Two!');
+  if ($(this).hasClass('x-image') || $(this).hasClass('o-image')) {
+    alert("Nice try! We both know that's not how you play this game. Try again.");
   } else {
-    if (playerTwo === 'X') {
-      $(this).addClass('x-image');
-      whichBox = $(this).attr('id');
-      trackBox('X');
+    if (turn === playerOne) {
+      if (playerOne === 'X') {
+        $(this).addClass('x-image');
+        whichBox = $(this).attr('id');
+        trackBox('X');
+      } else {
+        $(this).addClass('o-image');
+        whichBox = $(this).attr('id');
+        trackBox('O');
+      }
+      changeTurn(playerOne);
+      $('span').text('Your turn Player Two!');
     } else {
-      $(this).addClass('o-image');
-      whichBox = $(this).attr('id');
-      trackBox('O');
+      if (playerTwo === 'X') {
+        $(this).addClass('x-image');
+        whichBox = $(this).attr('id');
+        trackBox('X');
+      } else {
+        $(this).addClass('o-image');
+        whichBox = $(this).attr('id');
+        trackBox('O');
+      }
+      changeTurn(playerTwo);
+      $('span').text('Your turn Player One!');
     }
-    changeTurn(playerTwo);
-    $('span').text('Your turn Player One!');
+    count ++;
+    countCheck();
   }
-  count ++;
-  countCheck();
 }
 
 //track boxes that are already checked
