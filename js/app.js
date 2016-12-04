@@ -2,13 +2,13 @@
 $(document).ready(function() {
 
   //assign symbols to players
-  $('#x').on('click', function () {
+  $('body').on('click', '#x', function () {
     playerOne = 'X';
     playerTwo = 'O';
     firstPlayer();
   });
 
-  $('#o').on('click', function () {
+  $('body').on('click', '#o', function () {
     playerOne = 'O';
     playerTwo = 'X';
     firstPlayer();
@@ -22,6 +22,7 @@ $(document).ready(function() {
     } else {
       turn = playerTwo;
     };
+    $('button').remove();
     if (turn === playerOne) {
       $('#message').html('<h3>Player One: ' + playerOne + '<br/> Player Two: ' + playerTwo + '<br/><br/><span> You go first Player One!</span></h3>');
     } else {
@@ -40,6 +41,20 @@ $(document).ready(function() {
   allBoxes.eq(6).on('click', addSymbol);
   allBoxes.eq(7).on('click', addSymbol);
   allBoxes.eq(8).on('click', addSymbol);
+
+  //event listener for reset button
+  $('body').on('click', '.btn-danger', function() {
+    board = [];
+    count = 0;
+    playerOne = null;
+    playerTwo = null;
+    turn = null;
+    allBoxes.removeClass('x-image');
+    allBoxes.removeClass('o-image');
+    $('aside').html('<h3 id="message">Player One, choose your symbol:</h3>' +
+            '<button type="button" class="btn btn-secondary" id="x">X</button>' +
+            '<button type="button" class="btn btn-secondary" id="o">O</button>');
+  })
 });
 
 var playerOne;
@@ -101,7 +116,6 @@ function trackBox(symbol) {
   } else if (whichBox === 'nine') {
     board[8]= symbol;
   }
-  console.log(board);
 }
 
 //keep track of who's turn it is
@@ -127,6 +141,7 @@ function countCheck() {
     } else {
       $('#message').html('<h3>Player Two is victorious!</h3>');
     }
+    $('aside').append('<button type="button" class="btn btn-danger" id="reset">Play Again</button>');
   } else if ((board[0]==='O'&&board[1]==='O'&&board[2]==='O') ||
     (board[3]==='O'&&board[4]==='O'&&board[5]==='O') ||
     (board[6]==='O'&&board[7]==='O'&&board[8]==='O') ||
@@ -140,8 +155,10 @@ function countCheck() {
       } else {
         $('#message').html('<h3>Player Two is victorious!</h3>');
       }
+      $('aside').append('<button type="button" class="btn btn-danger">Play Again</button>');
   } else if (count === 9) {
     $('#message').html('<h3>Womp womp game over</h3>');
+    $('aside').append('<button type="button" class="btn btn-danger">Play Again</button>');
   }
 }
 
