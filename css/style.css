@@ -1,13 +1,18 @@
 .x-image {
-  background: url('../imgs/x-image');
+  background: url('../imgs/x-image.png') no-repeat;
+  background-size: contain;
+  background-position: center;
+
 }
 
 .o-image {
-  background: url('../imgs/o-image');
+  background: url('../imgs/o-image.png') no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .column {
-  height: 100px;
+  height: 200px;
 }
 
 #one {
