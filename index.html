@@ -12,14 +12,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <!-- link to custom javascript file (always require after external JS libraries) -->
     <script src="js/app.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Raleway" rel="stylesheet">
     <title>Tic Tac Toe</title>
   </head>
   <body>
     <div class="container">
-      <header>
-        <h1>Tic Tac Toe Game</h1>
+      <header class="col-xs-12">
+        <div class="col-sm-6 col-xs-12">
+          <h1>Tic Tac Toe</h1>
+          <h2 id="subheading">Can you handle the ticky tacky?</h2>
+        </div>
+        <aside class="col-sm-3 col-xs-12" id="message">
+        </aside>
+        <aside class="col-xs-12" id="belowHeading">
+        </aside>
       </header>
-      <div class="alert alert-warning alert-danger fade in" role="alert">
+
+      <div class="alert alert-warning alert-danger fade in col-xs-12" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -55,22 +64,24 @@
 
       </div> <!--closing div for gameboard-->
 
-      <aside "col-sm-3 col-sm-offset-8 col-xs-12">
-        <div class="input-group" id="formOne">
+      <div>
+        <div class="input-group col-md-6 col-xs-12" id="formOne">
           <span class="input-group-addon" id="sizing-addon2">Player One:</span>
           <input type="text" class="form-control" id="nameOne" placeholder="Name" aria-describedby="sizing-addon2">
           <span class="input-group-btn">
-            <button class="btn btn-secondary" id="submitOne" type="button">Submit</button>
+            <button class="btn btn-secondary btn-danger" id="submitOne" type="button">Submit</button>
           </span>
         </div>
-        <div class="input-group" id="formTwo">
+        <br>
+        <div class="input-group col-md-6 col-xs-12" id="formTwo">
           <span class="input-group-addon" id="sizing-addon2">Player Two:</span>
           <input type="text" class="form-control" id="nameTwo" placeholder="Name" aria-describedby="sizing-addon2">
           <span class="input-group-btn">
-            <button class="btn btn-secondary" id="submitTwo" type="button">Submit</button>
+            <button class="btn btn-secondary btn-danger" id="submitTwo" type="button">Submit</button>
           </span>
         </div>
-      </aside>
+      </div>
+
     </div> <!--closing div for whole container-->
   </body>
 </html>
