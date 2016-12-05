@@ -1,15 +1,16 @@
 //wait for the DOM to finish loading
 $(document).ready(function() {
 
-  //start off hiding alert
+  //start off hiding alert and gameboard
   $('.alert').hide();
+  $('.gameboard').hide();
 
   //input players' names
   $('#submitOne').on('click', function(){
     playerOneName = $('#nameOne').val();
     $('#formOne').remove();
     if (playerTwoName) {
-    $('aside').html('<h3 id="message">' + playerOneName + ', choose your symbol:</h3>' +
+    $('#belowHeading').html('<h3 id="leftText">' + playerOneName + ', choose your symbol:</h3>' +
     '<button type="button" class="btn btn-secondary" id="x">X</button>' +
     '&nbsp<button type="button" class="btn btn-secondary" id="o">O</button>');
     }
@@ -18,7 +19,7 @@ $(document).ready(function() {
     playerTwoName = $('#nameTwo').val();
     $('#formTwo').remove();
     if (playerOneName) {
-    $('aside').html('<h3 id="message">' + playerOneName + ', choose your symbol:</h3>' +
+    $('#belowHeading').html('<h3 id="leftText">' + playerOneName + ', choose your symbol:</h3>' +
     '<button type="button" class="btn btn-secondary" id="x">X</button>' +
     '&nbsp<button type="button" class="btn btn-secondary" id="o">O</button>');
     }
@@ -47,6 +48,8 @@ $(document).ready(function() {
     };
     $('#x').remove();
     $('#o').remove();
+    $('#belowHeading').remove();
+    $('.gameboard').show();
     if (turn === playerOne) {
       $('#message').html('<h3>' + playerOneName + ': ' + playerOne + '<br/>' + playerTwoName + ': ' + playerTwo +
       '<br/><br/><span class="players"> You go first ' + playerOneName + '!</span></h3>');
