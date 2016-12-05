@@ -1,6 +1,29 @@
 //wait for the DOM to finish loading
 $(document).ready(function() {
 
+  //start off hiding alert
+  $('.alert').hide();
+
+  //input players' names
+  $('#submitOne').on('click', function(){
+    playerOneName = $('#nameOne').val();
+    $('#formOne').remove();
+    if (playerTwoName) {
+    $('aside').html('<h3 id="message">' + playerOneName + ', choose your symbol:</h3>' +
+    '<button type="button" class="btn btn-secondary" id="x">X</button>' +
+    '&nbsp<button type="button" class="btn btn-secondary" id="o">O</button>');
+    }
+  })
+  $('#submitTwo').on('click', function(){
+    playerTwoName = $('#nameTwo').val();
+    $('#formTwo').remove();
+    if (playerOneName) {
+    $('aside').html('<h3 id="message">' + playerOneName + ', choose your symbol:</h3>' +
+    '<button type="button" class="btn btn-secondary" id="x">X</button>' +
+    '&nbsp<button type="button" class="btn btn-secondary" id="o">O</button>');
+    }
+  })
+
   //assign symbols to players
   $('body').on('click', '#x', function () {
     playerOne = 'X';
@@ -22,11 +45,14 @@ $(document).ready(function() {
     } else {
       turn = playerTwo;
     };
-    $('button').remove();
+    $('#x').remove();
+    $('#o').remove();
     if (turn === playerOne) {
-      $('#message').html('<h3>Player One: ' + playerOne + '<br/> Player Two: ' + playerTwo + '<br/><br/><span> You go first Player One!</span></h3>');
+      $('#message').html('<h3>' + playerOneName + ': ' + playerOne + '<br/>' + playerTwoName + ': ' + playerTwo +
+      '<br/><br/><span class="players"> You go first ' + playerOneName + '!</span></h3>');
     } else {
-      $('#message').html('<h3>Player One: ' + playerOne + '<br/> Player Two: ' + playerTwo + '<br/><br/><span> You go first Player Two!</span></h3>');
+      $('#message').html('<h3>' + playerOneName + ': ' + playerOne + '<br/>' + playerTwoName + ': ' + playerTwo +
+      '<br/><br/><span class="players"> You go first ' + playerTwoName + '!</span></h3>');
     }
   }
 
@@ -51,7 +77,7 @@ $(document).ready(function() {
     turn = null;
     allBoxes.removeClass('x-image');
     allBoxes.removeClass('o-image');
-    $('aside').html('<h3 id="message">Player One, choose your symbol:</h3>' +
+    $('aside').html('<h3 id="message">' + playerOneName + ', choose your symbol:</h3>' +
             '<button type="button" class="btn btn-secondary" id="x">X</button>' +
             '&nbsp<button type="button" class="btn btn-secondary" id="o">O</button>');
   })
@@ -59,6 +85,8 @@ $(document).ready(function() {
 
 var playerOne;
 var playerTwo;
+var playerOneName;
+var playerTwoName;
 var turn;
 var count = 0;
 var board = [];
@@ -67,7 +95,8 @@ var whichBox;
 //add symbol to box that player clicked
 function addSymbol() {
   if ($(this).hasClass('x-image') || $(this).hasClass('o-image')) {
-    alert("Nice try! We both know that's not how you play this game. Try again.");
+    $('.alert').show();
+    $('.close').on('click', function() {$('.alert').hide();});
   } else {
     if (turn === playerOne) {
       if (playerOne === 'X') {
@@ -80,7 +109,7 @@ function addSymbol() {
         trackBox('O');
       }
       changeTurn(playerOne);
-      $('span').text('Your turn Player Two!');
+      $('.players').text('Your turn ' + playerTwoName + '!');
     } else {
       if (playerTwo === 'X') {
         $(this).addClass('x-image');
@@ -92,7 +121,7 @@ function addSymbol() {
         trackBox('O');
       }
       changeTurn(playerTwo);
-      $('span').text('Your turn Player One!');
+      $('.players').text('Your turn ' + playerOneName + '!');
     }
     count ++;
     countCheck();
@@ -141,9 +170,9 @@ function countCheck() {
   (board[0]==='X'&&board[4]==='X'&&board[8]==='X') ||
   (board[2]==='X'&&board[4]==='X'&&board[6]==='X')) {
     if (playerOne === 'X') {
-      $('#message').html('<h3>Player One is victorious!</h3>');
+      $('#message').html('<h3>' + playerOneName + ' is victorious!</h3>');
     } else {
-      $('#message').html('<h3>Player Two is victorious!</h3>');
+      $('#message').html('<h3>' + playerTwoName + ' is victorious!</h3>');
     }
     $('aside').append('<button type="button" class="btn btn-danger" id="reset">Play Again</button>');
   } else if ((board[0]==='O'&&board[1]==='O'&&board[2]==='O') ||
@@ -155,9 +184,9 @@ function countCheck() {
     (board[0]==='O'&&board[4]==='O'&&board[8]==='O') ||
     (board[2]==='O'&&board[4]==='O'&&board[6]==='O')) {
       if (playerOne === 'O') {
-        $('#message').html('<h3>Player One is victorious!</h3>');
+        $('#message').html('<h3>' + playerOneName + ' is victorious!</h3>');
       } else {
-        $('#message').html('<h3>Player Two is victorious!</h3>');
+        $('#message').html('<h3>' + playerTwoName + ' is victorious!</h3>');
       }
       $('aside').append('<button type="button" class="btn btn-danger">Play Again</button>');
   } else if (count === 9) {
@@ -165,6 +194,3 @@ function countCheck() {
     $('aside').append('<button type="button" class="btn btn-danger">Play Again</button>');
   }
 }
-
-//form to input names, so it addresses Amber instead of player 1
-//temporarily hide buttons
