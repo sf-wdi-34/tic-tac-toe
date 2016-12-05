@@ -2,7 +2,6 @@
   background: url('../imgs/x-image.png') no-repeat;
   background-size: contain;
   background-position: center;
-
 }
 
 .o-image {
@@ -13,6 +12,14 @@
 
 .column {
   height: 200px;
+}
+
+h3 {
+  font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+  font-family: 'Lato', sans-serif;
 }
 
 #one {
