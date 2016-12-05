@@ -19,6 +19,12 @@
       <header>
         <h1>Tic Tac Toe Game</h1>
       </header>
+      <div class="alert alert-warning alert-danger fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Nice try!</strong> Come on now, we both know that's not how you play this game. No cheating on my watch!
+      </div>
 
       <div class="gameboard col-sm-9 col-xs-12">
 
@@ -50,9 +56,20 @@
       </div> <!--closing div for gameboard-->
 
       <aside "col-sm-3 col-sm-offset-8 col-xs-12">
-        <h3 id="message">Player One, choose your symbol:</h3>
-        <button type="button" class="btn btn-secondary" id="x">X</button>
-        <button type="button" class="btn btn-secondary" id="o">O</button>
+        <div class="input-group" id="formOne">
+          <span class="input-group-addon" id="sizing-addon2">Player One:</span>
+          <input type="text" class="form-control" id="nameOne" placeholder="Name" aria-describedby="sizing-addon2">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" id="submitOne" type="button">Submit</button>
+          </span>
+        </div>
+        <div class="input-group" id="formTwo">
+          <span class="input-group-addon" id="sizing-addon2">Player Two:</span>
+          <input type="text" class="form-control" id="nameTwo" placeholder="Name" aria-describedby="sizing-addon2">
+          <span class="input-group-btn">
+            <button class="btn btn-secondary" id="submitTwo" type="button">Submit</button>
+          </span>
+        </div>
       </aside>
     </div> <!--closing div for whole container-->
   </body>
