@@ -1,8 +1,74 @@
-#board {
-  margin-top: 10px;
+.x-image {
+  background: url('../imgs/x-image.png') no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
-.box {
-  border: 1px solid black;
-  height: 150px;
+.o-image {
+  background: url('../imgs/o-image.png') no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.column {
+  height: 175px;
+}
+
+#subheading {
+  font-family: 'Raleway', sans-serif;
+  font-size: 25px;
+}
+
+#leftText {
+  background-color: rgba(0,0,0,0);
+  text-align: left;
+}
+
+h3 {
+  font-size: 20px;
+  text-align: center;
+  font-color: black;
+  background-color: rgba(240,240,240,.5);
+}
+
+body {
+  background: url('../imgs/llama.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Lato', sans-serif;
+}
+
+.gameboard {
+  margin-top: 20px;
+}
+
+#one {
+  border-right: 5px black solid;
+  border-bottom: 5px black solid;
+}
+#two {
+  border-right: 5px black solid;
+  border-bottom: 5px black solid;
+}
+#three {
+  border-bottom: 5px black solid;
+}
+#four {
+  border-right: 5px black solid;
+  border-bottom: 5px black solid;
+}
+#five {
+  border-right: 5px black solid;
+  border-bottom: 5px black solid;
+}
+#six {
+  border-bottom: 5px black solid;
+}
+#seven {
+  border-right: 5px black solid;
+}
+#eight {
+  border-right: 5px black solid;
 }
